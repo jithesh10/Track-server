@@ -2,9 +2,12 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
+const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: '*'
+}));
 
 mongoose.connect("mongodb+srv://newuser10:Test123@cluster0.bpril.mongodb.net/Track?retryWrites=true&w=majority", { useNewURLParser: true, });
 
@@ -76,6 +79,6 @@ app.post("/add", async (req, res) => {
             }
 });
 
-app.listen(3001, function () {
+app.listen(PORT, function () {
     console.log("In port 3001");
 });
